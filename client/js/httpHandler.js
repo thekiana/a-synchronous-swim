@@ -12,7 +12,10 @@
       url: serverUrl,
       success: (response) => {
         // console.log("success" + response);
-        SwimTeam.move(response);
+        if(!response) {
+
+          SwimTeam.move(response);
+        }
       }}).fail((error) => {
         console.log(error);
       });
