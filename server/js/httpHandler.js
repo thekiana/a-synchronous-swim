@@ -16,18 +16,35 @@ module.exports.initialize = (queue) => {
 module.exports.router = (req, res, next = ()=>{}) => {
   // console.log('Serving request type ' + req.method + ' for url ' + req.url);
 
-  res.writeHead(200, headers);
   if (req.method === 'GET') {
-    // const array = ['up', 'down', 'right', 'left'];
-    // var randomIdx = Math.floor(Math.random() * array.length);
-    // res.write(array[randomIdx]);
-    const oneMessage = messages.dequeue();
-    // console.log("" + oneMessage + typeof(oneMessage));
-    if(oneMessage) {
-      res.write(""+oneMessage);
-    };
+
+    res.writeHead(200, headers);
+    const fileUrl = req.url.split("=")[1];
+    console.log(fileUrl);
+    if (fileUrl) {
+
+      //grab current path in string
+      let imageDir = `/spec/${fileUrl}`;
+      var fullPath = path.dirname(__dirname) + imageDir;
+      console.log(fullPath);
+      fs.copyFile(fullPath, path.dirname(__dirname) + '/background.jpg',(err) => {
+        if (err) {
+          throw err;
+        }
+        // console.log(data);
+      });
+    }
+    else {
+      const oneMessage = messages.dequeue();
+      if (oneMessage) {
+        res.write(""+oneMessage);
+      };
 
     }
-  res.end();
+
+
+    res.end();
+
+    }
   next(); // invoke next() at the end of a request to help with testing!
 };

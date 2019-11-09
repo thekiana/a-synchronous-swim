@@ -20,13 +20,13 @@
       });
   };
 
-  setInterval(ajaxFetch, 1000);
+  // setInterval(ajaxFetch, 1000);
 
 
   const ajaxFetchImage = (path) => {
     $.ajax({
       type: 'GET',
-      data: {path: path},
+      data: {'path': path},
       url: serverUrl,
       success: (response) => {
         console.log("success of Image " + response);
