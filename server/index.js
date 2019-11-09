@@ -16,3 +16,11 @@ server.listen(port, ip);
 
 console.log('Server is running in the terminal!');
 console.log(`Listening on http://${ip}:${port}`);
+
+
+//Client side:
+// input: arrow keys and/or move function
+// output: swimteam moving
+//Server side:
+// input: ajax requests, or arrow keys/move commands
+// output: responding to ajax GET requests with random, and making the swimteam move from arrow/move directions

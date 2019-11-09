@@ -4,6 +4,30 @@
 
   //
   // TODO: build the swim command fetcher here
+
+  const ajaxFetch = () => {
+    $.ajax({
+      type: 'GET',
+      data: {},
+      url: serverUrl,
+      // cache: false,
+      // contentType: false,
+      // processData: false,
+      success: (response) => {
+        console.log("success" + response);
+        SwimTeam.move(response);
+        //settimeout
+        // reload the page
+        // window.location = window.location.href;
+      }}).fail((error) => {
+        console.log("error" + error);
+        //settimeout
+      });
+  };
+
+// debugger;
+  setTimeout(ajaxFetch, 1000);
+
   //
 
   /////////////////////////////////////////////////////////////////////
@@ -17,7 +41,7 @@
     $.ajax({
       type: 'POST',
       data: formData,
-      url: 'FILL_ME_IN',
+      url: serverUrl,
       cache: false,
       contentType: false,
       processData: false,
