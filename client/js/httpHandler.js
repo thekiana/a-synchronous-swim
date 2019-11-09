@@ -10,23 +10,15 @@
       type: 'GET',
       data: {},
       url: serverUrl,
-      // cache: false,
-      // contentType: false,
-      // processData: false,
       success: (response) => {
-        console.log("success" + response);
+        // console.log("success" + response);
         SwimTeam.move(response);
-        //settimeout
-        // reload the page
-        // window.location = window.location.href;
       }}).fail((error) => {
-        console.log("error" + error);
-        //settimeout
+        console.log(error);
       });
   };
 
-// debugger;
-  setTimeout(ajaxFetch, 1000);
+  setInterval(ajaxFetch, 1000);
 
   //
 
