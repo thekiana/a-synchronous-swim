@@ -14,7 +14,7 @@ module.exports.initialize = (queue) => {
 };
 
 module.exports.router = (req, res, next = ()=>{}) => {
-  console.log('Serving request type ' + req.method + ' for url ' + req.url);
+  // console.log('Serving request type ' + req.method + ' for url ' + req.url);
 
   res.writeHead(200, headers);
   if (req.method === 'GET') {
@@ -22,8 +22,8 @@ module.exports.router = (req, res, next = ()=>{}) => {
     // var randomIdx = Math.floor(Math.random() * array.length);
     // res.write(array[randomIdx]);
     const oneMessage = messages.dequeue();
-    console.log("hello " + oneMessage);
-    if(!oneMessage) {
+    // console.log("" + oneMessage + typeof(oneMessage));
+    if(oneMessage) {
       res.write(""+oneMessage);
     };
 

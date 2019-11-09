@@ -11,9 +11,8 @@
       data: {},
       url: serverUrl,
       success: (response) => {
-        // console.log("success" + response);
-        if(!response) {
-
+        console.log("success " + response);
+        if(response) {
           SwimTeam.move(response);
         }
       }}).fail((error) => {
