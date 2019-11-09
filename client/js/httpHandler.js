@@ -22,6 +22,22 @@
 
   setInterval(ajaxFetch, 1000);
 
+
+  const ajaxFetchImage = (path) => {
+    $.ajax({
+      type: 'GET',
+      data: {path: path},
+      url: serverUrl,
+      success: (response) => {
+        console.log("success of Image " + response);
+        // $('.background').css.('background-image', url(`${serverURL}/${response}`));
+      }}).fail((error) => {
+        console.log(error);
+      });
+  };
+
+  ajaxFetchImage('water-lg.jpg');
+
   //
 
   /////////////////////////////////////////////////////////////////////

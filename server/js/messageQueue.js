@@ -1,7 +1,7 @@
-const initQueue = require('./httpHandler');
+// const initQueue = require('./httpHandler');
 
 const messages = []; // the storage unit for messages
-initQueue.initialize(messages);
+// initQueue.initialize(messages);
 
 
 module.exports.enqueue = (message) => {
