@@ -19,22 +19,35 @@ module.exports.router = (req, res, next = ()=>{}) => {
   if (req.method === 'GET') {
 
     res.writeHead(200, headers);
-    const fileUrl = req.url.split("=")[1];
-    // console.log(fileUrl);
+    const fileUrl = req.url;
+    console.log(fileUrl);
 
     if (fileUrl) {
 
       //grab current path in string
-      let imageDir = `/spec/${fileUrl}`;
-      var fullPath = path.dirname(__dirname) + imageDir;
-      console.log(fullPath);
-      fs.copyFile(fullPath, path.dirname(__dirname) + '/background.jpg',(err) => {
-        if (err) {
-          console.log("AN ERROR IN THE SERVER COPY");
+      // let imageDir = `/spec${fileUrl}`;
+      // var fullPath = path.dirname(__dirname) + imageDir;
+      // // console.log(fullPath);
+      // fs.copyFile(fullPath, path.dirname(__dirname) + '/background.jpg',(err) => {
+      //   if (err) {
+      //     console.log("AN ERROR IN THE SERVER COPY");
+      //     throw err;
+      //   }
+      // });
+
+      var serverPath = path.dirname(__dirname) + fileUrl;
+      console.log(serverPath);
+      fs.readFile(serverPath, (err, data) => {
+        if(err) {
           throw err;
         }
-      });
-      res.write(path.dirname(__dirname) + '/background.jpg');
+        else {
+          res.write(data, "binary")
+          res.end();
+        }
+      })
+
+      // res.write(path.dirname(__dirname) + '/background.jpg');
       // console.log(res);
     }
     else {
@@ -42,11 +55,10 @@ module.exports.router = (req, res, next = ()=>{}) => {
       if (oneMessage) {
         res.write(""+oneMessage);
       };
+      res.end();
 
     }
 
-
-    res.end();
 
     }
   next(); // invoke next() at the end of a request to help with testing!

@@ -30,13 +30,13 @@
       url: serverUrl,
       success: (response) => {
         console.log("success " + response);
-        
+
       }}).fail((error) => {
         console.log("ERROR: " + error);
       });
   };
 
-  ajaxFetchImage('water-sm.jpg');
+  // ajaxFetchImage('water-sm.jpg');
 
   //
 
