@@ -20,7 +20,8 @@ module.exports.router = (req, res, next = ()=>{}) => {
 
     res.writeHead(200, headers);
     const fileUrl = req.url.split("=")[1];
-    console.log(fileUrl);
+    // console.log(fileUrl);
+
     if (fileUrl) {
 
       //grab current path in string
@@ -29,10 +30,12 @@ module.exports.router = (req, res, next = ()=>{}) => {
       console.log(fullPath);
       fs.copyFile(fullPath, path.dirname(__dirname) + '/background.jpg',(err) => {
         if (err) {
+          console.log("AN ERROR IN THE SERVER COPY");
           throw err;
         }
-        // console.log(data);
       });
+      res.write(path.dirname(__dirname) + '/background.jpg');
+      // console.log(res);
     }
     else {
       const oneMessage = messages.dequeue();

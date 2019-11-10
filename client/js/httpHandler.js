@@ -29,14 +29,14 @@
       data: {'path': path},
       url: serverUrl,
       success: (response) => {
-        console.log("success of Image " + response);
-        // $('.background').css.('background-image', url(`${serverURL}/${response}`));
+        console.log("success " + response);
+        
       }}).fail((error) => {
-        console.log(error);
+        console.log("ERROR: " + error);
       });
   };
 
-  ajaxFetchImage('water-lg.jpg');
+  ajaxFetchImage('water-sm.jpg');
 
   //
 
